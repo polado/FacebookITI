@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:iti_facebook/model/user.dart';
 import 'package:iti_facebook/services/user_services.dart';
 import 'package:progress_indicator_button/progress_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_view.dart';
 
@@ -21,15 +24,28 @@ class _LoginViewState extends State<LoginView> {
 
   User user;
 
+  SharedPreferences sharedPreferences;
+
   void initState() {
     // TODO: implement initState
     super.initState();
     user = new User();
   }
 
+  void setUserData() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+
+    setState(() {
+      sharedPreferences.setString(
+          "UserData", jsonEncode(user.signupMap()).toString());
+      print("login shared pref" + sharedPreferences.getString("UserData"));
+    });
+  }
+
   void navigate() {
+    setUserData();
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (BuildContext context) => HomeView(user: user)));
+        builder: (BuildContext context) => HomeView()));
   }
 
   void loginFuture(AnimationController controller) {

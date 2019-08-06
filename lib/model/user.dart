@@ -42,6 +42,40 @@ class User {
     return user;
   }
 
+//  User.fromJ(Map<String, dynamic> json)
+//      : id = int.parse(json['UserID']),
+//        phone = int.parse(json['UserPhone']),
+//        email = json['UserMail'],
+//        firstName = json['UserFirstName'],
+//        lastName = json['UserLastName'],
+//        password = json['UserPassword'],
+//        address = json['UserAddress'],
+//        gender = json['UserGender'],
+//        roleID = int.parse(json['UserRoleID']),
+//        profilePic = json['UserProfilePicture'];
+
+  factory User.fromSharedPreferences(Map<String, dynamic> json) {
+    print("fromSharedPreferences " + json.toString());
+
+    User user = new User(
+        id: int.parse(json['UserID']),
+        phone: int.parse(json['UserPhone']),
+        email: json['UserMail'],
+        firstName: json['UserFirstName'],
+        lastName: json['UserLastName'],
+        password: json['UserPassword'],
+        address: json['UserAddress'],
+        gender: json['UserGender'],
+        roleID: int.parse(json['UserRoleID']),
+        dateOfBirth:
+        DateTime.parse(json['UserDateOfBirth']) ?? new DateTime.now(),
+        profilePic: json['UserProfilePicture']);
+
+    print(user.phone.toString() + " namessssss " + user.fullName());
+
+    return user;
+  }
+
   Map loginMap() {
     var map = new Map<String, dynamic>();
     map["Mail"] = email;
@@ -73,5 +107,9 @@ class User {
         "Last Name: $lastName,"
         "Email: $email,"
         "\n";
+  }
+
+  String fullName() {
+    return '$firstName $lastName';
   }
 }

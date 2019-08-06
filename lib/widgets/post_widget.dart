@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:iti_facebook/model/Friend.dart';
+import 'package:iti_facebook/model/user.dart';
 import 'package:iti_facebook/services/user_services.dart';
 
 class PostCardWidget extends StatelessWidget {
   final int userID;
   final String image, content;
   final DateTime datePosted;
-  Friend postOwner;
+  User postOwner;
 
   String img, name;
 
@@ -54,11 +54,14 @@ class PostCardWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Image.memory(
-                  Base64Decoder().convert(img),
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.contain,
+                new ClipRRect(
+                  borderRadius: new BorderRadius.circular(25.0),
+                  child: Image.memory(
+                    Base64Decoder().convert(img),
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 Padding(padding: EdgeInsets.only(right: 12)),
                 Text(

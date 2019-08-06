@@ -96,8 +96,8 @@ class UserServices {
       http.Response response = await http.get(url);
 
       String s = response.statusCode.toString();
-      print("friend service " + s);
-      print("friend service " + response.body);
+//      print("friend service " + s);
+//      print("friend service " + response.body);
 
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);

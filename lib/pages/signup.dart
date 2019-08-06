@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:iti_facebook/model/user.dart';
 import 'package:iti_facebook/services/user_services.dart';
-import 'package:iti_facebook/widgets/appbar_widget.dart';
 import 'package:progress_indicator_button/progress_button.dart';
 
 import 'home_view.dart';
@@ -37,7 +36,7 @@ class _SignupViewState extends State<SignupView> {
 
   void navigate() {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (BuildContext context) => HomeView(user: user)));
+        builder: (BuildContext context) => HomeView()));
   }
 
   void signupFuture(AnimationController controller) {

@@ -30,6 +30,7 @@ dependencies:
   progress_indicator_button: ^0.0.2
   json_annotation: ^2.0.0
   rounded_floating_app_bar: 0.1.0
+  shared_preferences: ^0.5.3+4
 
 dev_dependencies:
   flutter_test:
