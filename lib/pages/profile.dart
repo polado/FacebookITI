@@ -56,6 +56,7 @@ class _ProfileViewState extends State<ProfileView> {
           return <Widget>[
             SliverAppBar(
               leading: IconButton(
+                tooltip: "Back",
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.pop(context);
@@ -63,6 +64,7 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               actions: <Widget>[
                 IconButton(
+                  tooltip: "Settings",
                   icon: Icon(Icons.settings),
                   onPressed: () {},
                 ),

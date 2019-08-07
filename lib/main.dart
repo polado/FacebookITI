@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:iti_facebook/pages/home_view.dart';
-import 'package:iti_facebook/pages/login.dart';
-
-import 'model/user.dart';
+import 'package:iti_facebook/pages/splash_screen.dart';
 
 const SystemUiOverlayStyle lightSystemUiOverlayStyle = SystemUiOverlayStyle(
   statusBarColor: Colors.white,
@@ -52,7 +49,7 @@ class MyApp extends StatelessWidget {
 //        user:
 //        new User(id: 1, firstName: 'test', lastName: 'test', email: 'test'),
 //      ),
-    home: LoginView(),
+      home: MySplashScreen(),
     );
   }
 }

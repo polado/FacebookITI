@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:iti_facebook/pages/profile.dart';
+import 'package:iti_facebook/pages/splash_screen.dart';
 import 'package:rounded_floating_app_bar/rounded_floating_app_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   String title = "Home";
@@ -17,9 +19,18 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.search),
+          tooltip: "Search",
           onPressed: () {},
         ),
         IconButton(
+          icon: Icon(Icons.exit_to_app),
+          tooltip: "Logout",
+          onPressed: () {
+            _showDialog(context);
+          },
+        ),
+        IconButton(
+          tooltip: "Profile",
           icon: CircleAvatar(
             child: Hero(
               tag: "profilePic",
@@ -70,6 +81,55 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
     );
     return appbar;
+  }
+
+  void _showDialog(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          title: new Text("Logout?"),
+          content: new Text("Are you sure you want to logout?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text(
+                "Cancel",
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                print("No");
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text(
+                "Confirm",
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                print("Yes");
+                logout(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void logout(BuildContext context) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.remove("UserData");
+
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (BuildContext context) => MySplashScreen()),
+            (Route<dynamic> route) => false);
   }
 
   @override

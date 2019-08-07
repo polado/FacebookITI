@@ -152,7 +152,9 @@ class _HomeViewState extends State<HomeView> {
                   );
                 else
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.black,
+                    ),
                   );
               }),
         ),
